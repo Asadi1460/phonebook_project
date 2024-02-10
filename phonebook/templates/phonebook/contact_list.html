@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contacts</h1>
+    <a href="/phonebook/search_contact/">Search</a>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.first_name }}</td>
+                    <td>{{ contact.last_name }}</td>
+                    <td>{{ contact.phone_number }}</td>
+                    <td>
+                        <a href="{% url 'edit_contact' contact.id %}">Edit</a>
+                        <a href="{% url 'delete_contact' contact.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No contacts found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Contacts</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Contacts</h1>#}
+{#    <ul>#}
+{#        {% for contact in contacts %}#}
+{#            <li>#}
+{#                {{ contact.first_name }} {{ contact.last_name }} - {{ contact.phone_number }}#}
+{#                <a href="{% url 'edit_contact' contact.id %}">Edit</a>#}
+{#                <a href="{% url 'delete_contact' contact.id %}">Delete</a>#}
+{#            </li>#}
+{#        {% empty %}#}
+{#            <li>No contacts found</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#    <a href="/phonebook/search_contact/">Search</a>#}
+{#</body>#}
+{#</html>#}
